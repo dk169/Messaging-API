@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import { notFoundUrl, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
 import messageRouters from './routes/messageRoutes.js'
@@ -19,6 +20,10 @@ app.use('/api/messages', messageRouters)
 app.get('/', (req, res) => {
   res.send('API is running...')
 })
+
+//errors handler
+app.use(notFoundUrl)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
