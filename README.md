@@ -36,7 +36,7 @@ JWT_EXPIRESIN = 3d
 
 # API
 
-Server will listen on port `5000`, and it expose the following APIs:
+Server url is https://kasa-messaging-api.herokuapp.com, and it expose the following APIs:
 
 - **POST** - `/ap/users/register` - Register a new user
 
