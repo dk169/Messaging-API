@@ -16,6 +16,7 @@ const errorHandler = (err, req, res, next) => {
     console.error(err)
     resObj.stack = err.stack
   }
+  console.error(err)
 
   // if it's monogodb cast error then show Custom message
   if (err instanceof mongoose.Error.CastError) {
