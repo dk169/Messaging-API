@@ -10,13 +10,17 @@ import CustomError from '../utils/customError.js'
 const authUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body
 
+  if (!email && !password) {
+    return next(new CustomError('Invalid user data', 400))
+  }
+
   const user = await User.findOne({ email })
 
   if (!user) {
     return next(new CustomError(`User not found`, 404))
   }
 
-  if (user && (await user.matchPassword(password))) {
+  if (user && password && (await user.matchPassword(password))) {
     res.json(
       new CustomResponse({
         _id: user._id,
@@ -35,6 +39,10 @@ const authUser = asyncHandler(async (req, res, next) => {
 // @access   Public
 const registerUser = asyncHandler(async (req, res, next) => {
   const { name, password, email } = req.body
+
+  if (!name && !password && !email) {
+    return next(new CustomError('Invalid user data', 400))
+  }
 
   const userExists = await User.findOne({ email })
 
