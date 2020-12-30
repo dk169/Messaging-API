@@ -1,6 +1,5 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import colors from 'colors'
 import { notFoundUrl, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 import rateLimiter from './utils/rateLimiter.js'
@@ -22,6 +21,10 @@ app.use(express.json())
 app.use('/api/users', userRoutes)
 app.use('/api/messages', messageRouters)
 
+app.get('/', (req, res) => {
+  res.send('API is running...')
+})
+
 //errors handler
 app.use(notFoundUrl)
 app.use(errorHandler)
@@ -30,8 +33,5 @@ const PORT = process.env.PORT || 5000
 
 app.listen(
   PORT,
-  console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow
-      .underline
-  )
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 )
