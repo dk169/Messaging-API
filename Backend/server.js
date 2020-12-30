@@ -14,17 +14,13 @@ connectDB()
 
 const app = express()
 
-app.use(helmet());
+app.use(helmet())
 app.use(rateLimiter)
 app.use(express.json())
 
 // Routes
 app.use('/api/users', userRoutes)
 app.use('/api/messages', messageRouters)
-
-app.get('/', (req, res) => {
-  res.send('API is running...')
-})
 
 //errors handler
 app.use(notFoundUrl)
@@ -40,4 +36,4 @@ app.listen(
   )
 )
 
-export{app}
+export { app }

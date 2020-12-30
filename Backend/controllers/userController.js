@@ -17,13 +17,14 @@ const authUser = asyncHandler(async (req, res, next) => {
   }
 
   if (user && (await user.matchPassword(password))) {
-
-    res.json(new CustomResponse({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: generateToken(user._id),
-    }))
+    res.json(
+      new CustomResponse({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: generateToken(user._id),
+      })
+    )
   } else {
     return next(new CustomError('Invalid name or password', 401))
   }
@@ -51,12 +52,14 @@ const registerUser = asyncHandler(async (req, res, next) => {
     return next(new CustomError('Invalid user data', 400))
   }
 
-  res.json(new CustomResponse({
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    token: generateToken(user._id),
-  }))
+  res.json(
+    new CustomResponse({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    })
+  )
 })
 
 // @desc     Update user profile
@@ -77,11 +80,13 @@ const updateUser = asyncHandler(async (req, res, next) => {
 
   const updatedUser = await user.save()
 
-  res.json(new CustomResponse({
-    _id: updatedUser._id,
-    name: updatedUser.name,
-    email: updatedUser.email,
-  }))
+  res.json(
+    new CustomResponse({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+    })
+  )
 })
 
 //@desc     Get all users
@@ -99,12 +104,12 @@ const getUsers = asyncHandler(async (req, res, next) => {
 const deleteUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id)
 
-  if (!user) {    
+  if (!user) {
     return next(new CustomError('User not found', 404))
   }
 
   await user.remove()
-  res.json({ success:1, message: 'User removed' })
+  res.json({ success: 1, message: 'User removed' })
 })
 
 //@desc     Get user by ID
@@ -113,12 +118,9 @@ const deleteUser = asyncHandler(async (req, res, next) => {
 const getUserById = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password')
   if (!user) {
-
     return next(new CustomError('User not found', 404))
   }
   res.json(new CustomResponse(user))
 })
-
-
 
 export { authUser, registerUser, getUsers, getUserById, updateUser, deleteUser }

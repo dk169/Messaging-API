@@ -18,7 +18,6 @@ const createMessage = asyncHandler(async (req, res, next) => {
 
   const createdMessage = await newMessage.save()
 
-  
   res.status(201).json(new CustomResponse(createdMessage))
 })
 
@@ -27,8 +26,11 @@ const createMessage = asyncHandler(async (req, res, next) => {
 // @access   Private
 const getAllUserMessages = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({
-    $or: [{ sender: req.user._id }, { receiver: req.user._id }], 
-  }).populate({path: 'sender', select: 'name'}).populate({path: 'receiver', select: 'name'}).exec()
+    $or: [{ sender: req.user._id }, { receiver: req.user._id }],
+  })
+    .populate({ path: 'sender', select: 'name' })
+    .populate({ path: 'receiver', select: 'name' })
+    .exec()
 
   res.json(new CustomResponse(messages))
 })
@@ -40,7 +42,10 @@ const getAllUnreadMessages = asyncHandler(async (req, res, next) => {
   const messages = await Message.find({
     receiver: req.user._id,
     isRead: false,
-  }).populate({path: 'sender', select: 'name'}).populate({path: 'receiver', select: 'name'}).exec()
+  })
+    .populate({ path: 'sender', select: 'name' })
+    .populate({ path: 'receiver', select: 'name' })
+    .exec()
   res.json(new CustomResponse(messages))
 })
 
@@ -68,7 +73,7 @@ const deleteMessage = asyncHandler(async (req, res, next) => {
     return next(new CustomError(`Message not found!`, 404))
   }
   await message.remove()
-  res.json({ success:1, message: 'Message removed' })
+  res.json({ success: 1, message: 'Message removed' })
 })
 
 export {
