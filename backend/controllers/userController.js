@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
-import CustomResponse from '../utils/CustomResponse.js'
+import CustomResponse from '../utils/customResponse.js'
 import CustomError from '../utils/customError.js'
 
 // @desc     Auth user & get token

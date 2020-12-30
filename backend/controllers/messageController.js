@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Message from '../models/messageModel.js'
-import CustomResponse from '../utils/CustomResponse.js'
+import CustomResponse from '../utils/customResponse.js'
 import CustomError from '../utils/customError.js'
 
 // @desc     Create a Message
