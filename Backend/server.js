@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
+import messageRouters from './routes/messageRoutes.js'
 
 dotenv.config()
 
@@ -13,6 +14,7 @@ app.use(express.json())
 
 //Routes
 app.use('/api/users', userRoutes)
+app.use('/api/messages', messageRouters)
 
 app.get('/', (req, res) => {
   res.send('API is running...')
