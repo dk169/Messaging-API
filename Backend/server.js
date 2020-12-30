@@ -35,5 +35,3 @@ app.listen(
       .underline
   )
 )
-
-export { app }
