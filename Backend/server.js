@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import { notFoundUrl, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
+import rateLimiter from './utils/rateLimiter.js'
+import helmet from 'helmet'
 import userRoutes from './routes/userRoutes.js'
 import messageRouters from './routes/messageRoutes.js'
 
@@ -12,11 +14,11 @@ connectDB()
 
 const app = express()
 
-app.use(helmet())
+app.use(helmet());
 app.use(rateLimiter)
 app.use(express.json())
 
-//Routes
+// Routes
 app.use('/api/users', userRoutes)
 app.use('/api/messages', messageRouters)
 
@@ -37,3 +39,5 @@ app.listen(
       .underline
   )
 )
+
+export{app}
