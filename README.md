@@ -64,7 +64,9 @@ Server url is https://kasa-messaging-api.herokuapp.com, and it expose the follow
 - **DELETE** - `/api/users/:id` - Delete user
 
 <br/>
+
 #### Messages routes
+
 - **POST** - `/ap/messages` - Create a new message
 
   - **receiver** - _string_
