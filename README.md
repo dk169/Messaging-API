@@ -20,7 +20,7 @@ npm run start
 
 # Configuration File
 
-You can find a `.env` file in the root of the project.  
+You need to create `.env` file in the root of the project.  
 Before run the server set your nodejs environment variables
 
 .env
@@ -37,6 +37,8 @@ JWT_EXPIRESIN = 3d
 # API
 
 Server url is https://kasa-messaging-api.herokuapp.com, and it expose the following APIs:
+
+#### Users routes
 
 - **POST** - `/ap/users/register` - Register a new user
 
@@ -60,6 +62,23 @@ Server url is https://kasa-messaging-api.herokuapp.com, and it expose the follow
   - **password** - _string_
 
 - **DELETE** - `/api/users/:id` - Delete user
+
+<br/>
+#### Messages routes
+- **POST** - `/ap/messages` - Create a new message
+
+  - **receiver** - _string_
+  - **message** - _string_
+  - **subject** - _string_
+
+
+- **GET** - `/api/messages` - Get all meesages for login user
+
+- **GET** - `/api/messages/unread` - Get all unread messages for user
+
+- **PUT** - `/api/messages/:meesageId/read` - Read message
+
+- **DELETE** - `/api/messages/:id` - Delete message
 
 # Postman
 
