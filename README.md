@@ -95,9 +95,9 @@ Authorization header example:
 
 The project implements some of nodejs security techniques:
 
-- [Helmet](https://github.com/helmetjs/helmet) : can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately
-- [Express Rate Limit](https://github.com/nfriedly/express-rate-limit): to protect your applications from brute-force attacks
-  - In the main.ts you can set a limit of requests in a time window (default is 100 requests in 15 minutes for all endpoints, and 3 requests in a 1 hour for sign up endpoint)
+- [Helmet](https://github.com/helmetjs/helmet) : can help protect our app from some well-known web vulnerabilities by setting HTTP headers appropriately
+- [Express Rate Limit](https://github.com/nfriedly/express-rate-limit): to protect our applications from brute-force attacks
+  - In the server.js we can set a limit of requests in a time window (default is 100 requests in 15 minutes for all endpoints, and 3 requests in a 1 hour for sign up endpoint)
 
 # Contributing
 
