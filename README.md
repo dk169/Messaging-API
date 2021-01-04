@@ -73,7 +73,6 @@ Server url is https://kasa-messaging-api.herokuapp.com, and it expose the follow
   - **message** - _string_
   - **subject** - _string_
 
-
 - **GET** - `/api/messages` - Get all meesages for login user
 
 - **GET** - `/api/messages/unread` - Get all unread messages for user
@@ -109,6 +108,7 @@ Login response:
 Authorization header example:
 
 ```
+
  Authorization → Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...._DkYJJh4s
 ```
 
